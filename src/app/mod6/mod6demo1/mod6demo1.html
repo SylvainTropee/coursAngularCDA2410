@@ -1,13 +1,39 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 
   <label for="email">Email</label>
   <input type="email" id="email" name="email" formControlName="email">
+  <!--   dirty permet checker si l'input à changer de valeur-->
+  @if (form.get('email')?.touched || form.get('email')?.dirty) {
+    @if (form.get('email')?.hasError('required')) {
+      <p class="error">Le champ est obligatoire !</p>
+    }
+    @if (form.get('email')?.hasError('email')) {
+      <p class="error">Ce n'est pas un mail valide</p>
+    }
+  }
 
   <label for="password">Mot de passe</label>
   <input type="password" id="password" name="password" formControlName="password">
+  @if (form.get('password')?.touched || form.get('password')?.dirty) {
+    @if (form.get('password')?.hasError('required')) {
+      <p class="error">Le champ est obligatoire !</p>
+    }
+    @if (form.get('password')?.hasError('pattern')) {
+      <p class="error">Le mot de passe doit faire au moins 8 caractères</p>
+    }
+  }
 
   <label for="birthdate">Date de naissance</label>
   <input type="date" id="birthdate" name="birthdate" formControlName="birthdate">
+  @if (form.get('birthdate')?.touched || form.get('birthdate')?.dirty) {
+    @if (form.get('birthdate')?.hasError('required')) {
+      <p class="error">Le champ est obligatoire !</p>
+    }
+    @if (form.get('birthdate')?.hasError('dateGreatherThan')) {
+      <p class="error">La date doit être inférieure à aujourd'hui</p>
+    }
+  }
+
 
   <label for="newsLetter">
     <input type="checkbox" id="newsLetter" name="newsLetter" formControlName="newsLetter">
@@ -27,3 +53,24 @@
   <button type="submit">Envoyer</button>
 
 </form>
+
+<!--template driven form-->
+<form action="">
+  <label for="name">Name</label>
+  <input type="text" [(ngModel)]="name" name="name" id="name" (input)="check($event)">
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
