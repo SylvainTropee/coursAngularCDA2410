@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" formControlName="email">
+
+  <label for="password">Mot de passe</label>
+  <input type="password" id="password" name="password" formControlName="password">
+
+  <label for="birthdate">Date de naissance</label>
+  <input type="date" id="birthdate" name="birthdate" formControlName="birthdate">
+
+  <label for="newsLetter">
+    <input type="checkbox" id="newsLetter" name="newsLetter" formControlName="newsLetter">
+    S'abonner à la newsletter ?
+  </label>
+
+  <label for="job">Métier</label>
+  <select name="job" id="job" formControlName="job">
+    <option value="admin">Admin Sys</option>
+    <option value="dev">Développeur</option>
+    <option value="cho">Chomeur</option>
+  </select>
+
+  <label for="note">Note</label>
+  <input type="range" id="note" name="note" min="0" max="10" step="1" formControlName="note">
+
+  <button type="submit">Envoyer</button>
+
+</form>
