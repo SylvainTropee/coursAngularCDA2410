@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Joke} from './joke';
 import {catchError, distinctUntilChanged, map, retry, switchMap, tap, timeout} from 'rxjs';
 
@@ -14,7 +14,7 @@ export class Mod7service {
   }
 
   getJoke() {
-    return this.http.get<any>(this.BASE_URL)
+        return this.http.get<any>(this.BASE_URL)
   }
 
   getJoke2(){
@@ -45,6 +45,11 @@ export class Mod7service {
       timeout(2000)
       //catchError(err => {})
     )
+  }
+
+  getJoke4(){
+    const params = new HttpParams().set('name', 'Michel')
+    return this.http.get<Joke>(this.BASE_URL, {params : params}).subscribe()
   }
 
 }
